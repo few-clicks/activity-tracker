@@ -24,6 +24,14 @@ module.exports = (env, argv) => {
       clean: true,
     },
     plugins,
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+      ],
+    },
     devServer: {
       port: env.port || 3000,
       open: true,
