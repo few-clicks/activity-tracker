@@ -1,9 +1,11 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
+  const isProduction = !isDevelopment;
 
   const plugins = [
     new HtmlWebPackPlugin({
@@ -13,6 +15,13 @@ module.exports = (env, argv) => {
   ];
 
   isDevelopment && plugins.push(new webpack.ProgressPlugin());
+  isProduction &&
+    plugins.push(
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash].css',
+        chunkFilename: 'css/[name].[contenthash].css',
+      })
+    );
 
   return {
     entry: {
@@ -28,7 +37,11 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.s[ac]ss$/i,
-          use: ['style-loader', 'css-loader', 'sass-loader'],
+          use: [
+            isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'sass-loader',
+          ],
         },
       ],
     },
