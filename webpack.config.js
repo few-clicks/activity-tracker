@@ -1,54 +1,17 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+require('dotenv').config();
+const getWebpackConfiguration = require('./config/webpack/index.js');
 
-module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === 'development';
-  const isProduction = !isDevelopment;
-
-  const plugins = [
-    new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, 'public', 'index.html'),
-      filename: 'index.html',
-    }),
-  ];
-
-  isDevelopment && plugins.push(new webpack.ProgressPlugin());
-  isProduction &&
-    plugins.push(
-      new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash].css',
-        chunkFilename: 'css/[name].[contenthash].css',
-      })
-    );
-
-  return {
-    entry: {
-      app: path.resolve(__dirname, 'src', 'index.js'),
+module.exports = (_, argv) => {
+  const options = {
+    mode: argv.mode,
+    paths: {
+      entry: path.resolve(__dirname, process.env.ENTRY_PATH),
+      output: path.resolve(__dirname, process.env.OUTPUT_PATH),
+      template: path.resolve(__dirname, process.env.TEMPLATE_PATH),
     },
-    output: {
-      filename: '[name].[contenthash].js',
-      path: path.resolve(__dirname, 'build'),
-      clean: true,
-    },
-    plugins,
-    module: {
-      rules: [
-        {
-          test: /\.s[ac]ss$/i,
-          use: [
-            isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader',
-          ],
-        },
-      ],
-    },
-    devServer: {
-      port: env.port || 3000,
-      open: true,
-    },
-    devtool: isDevelopment && 'inline-source-map',
+    port: process.env.DEV_PORT,
   };
+
+  return getWebpackConfiguration(options);
 };
