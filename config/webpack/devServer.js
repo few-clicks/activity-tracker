@@ -1,7 +1,7 @@
 const getDevServer = ({ port }) => {
   return {
     port,
-    open: true,
+    open: false,
     hot: true,
   };
 };
