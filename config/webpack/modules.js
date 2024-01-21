@@ -3,6 +3,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getModules = ({ mode }) => {
   const isProduction = mode === 'production';
 
+  const babelLoader = {
+    test: /\.(?:js|mjs|cjs)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: [['@babel/preset-env', { targets: 'defaults' }]],
+      },
+    },
+  };
+
   const cssLoaderWithModules = {
     loader: 'css-loader',
     options: {
@@ -16,6 +27,7 @@ const getModules = ({ mode }) => {
 
   return {
     rules: [
+      babelLoader,
       {
         oneOf: [
           {
@@ -32,11 +44,17 @@ const getModules = ({ mode }) => {
           },
           {
             test: /\.css$/i,
-            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            use: [
+              isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+              'css-loader',
+            ],
           },
           {
             test: /\.s[ac]ss$/i,
-            use: [MiniCssExtractPlugin.loader, 'sass-loader'],
+            use: [
+              isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+              'sass-loader',
+            ],
           },
         ],
       },
