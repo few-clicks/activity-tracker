@@ -32,11 +32,17 @@ const getModules = ({ mode }) => {
           },
           {
             test: /\.css$/i,
-            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            use: [
+              isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+              'css-loader',
+            ],
           },
           {
             test: /\.s[ac]ss$/i,
-            use: [MiniCssExtractPlugin.loader, 'sass-loader'],
+            use: [
+              isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+              'sass-loader',
+            ],
           },
         ],
       },
