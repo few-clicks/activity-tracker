@@ -1,72 +1,18 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+require('dotenv').config();
+const getWebpackConfiguration = require('./config/webpack/index.js');
 
-module.exports = (env, argv) => {
-  const isProduction = argv.mode === 'production';
-
-  const plugins = [
-    //   new CleanWebpackPlugin(),
-    new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
-    }),
-  ];
-
-  if (isProduction) {
-    plugins.push(new CleanWebpackPlugin());
-  }
-
-  return {
-    entry: './src/index.js',
-    output: {
-      filename: 'bundle.[hash].js',
-      path: path.resolve(__dirname, 'dist'),
-      publicPath: '/dist/',
+module.exports = (_, argv) => {
+  const options = {
+    mode: argv.mode,
+    paths: {
+      entry: path.resolve(__dirname, process.env.ENTRY_PATH),
+      output: path.resolve(__dirname, process.env.OUTPUT_PATH),
+      template: path.resolve(__dirname, process.env.TEMPLATE_PATH),
+      src: path.resolve(__dirname, process.env.SRC_PATH),
     },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-          },
-        },
-        {
-          test: /\.html$/,
-          use: [
-            {
-              loader: 'html-loader',
-            },
-          ],
-        },
-        {
-          test: /\.css$/,
-          use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-            'css-loader',
-          ],
-        },
-      ],
-    },
-    plugins,
-    devServer: {
-      static: {
-        directory: path.join(__dirname, 'dist'),
-      },
-      compress: true,
-      port: 8080,
-      hot: true,
-      open: true,
-      historyApiFallback: true,
-    },
-    // Это для улучшения карты исходников в разрабатываемых приложениях
-    devtool: isProduction ? 'source-map' : 'eval-source-map',
+    port: process.env.DEV_PORT,
   };
+
+  return getWebpackConfiguration(options);
 };
