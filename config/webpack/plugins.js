@@ -2,16 +2,26 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
 
-const getPlugins = ({ mode, paths }) => {
+const getPlugins = ({ mode, analyze, paths }) => {
   const isDevelopment = mode === 'development';
   const isProduction = mode === 'production';
 
+  let faviconForHtmlPlugin = '';
+  if (paths.logo) {
+    if (isDevelopment) faviconForHtmlPlugin = paths.logo;
+  } else {
+    faviconForHtmlPlugin = path.resolve(paths.public, 'icons', 'favicon.ico');
+  }
+
   const plugins = [
     new HtmlWebPackPlugin({
-      template: paths.template,
+      template: path.resolve(paths.public, 'index.html'),
       filename: 'index.html',
+      favicon: faviconForHtmlPlugin,
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
@@ -20,7 +30,11 @@ const getPlugins = ({ mode, paths }) => {
   ];
 
   isDevelopment && plugins.push(new webpack.ProgressPlugin());
-  isProduction && plugins.push(new BundleAnalyzerPlugin());
+
+  if (isProduction) {
+    analyze && plugins.push(new BundleAnalyzerPlugin());
+    paths.logo && plugins.push(new FaviconsWebpackPlugin(paths.logo));
+  }
 
   return plugins;
 };
