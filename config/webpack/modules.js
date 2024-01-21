@@ -17,12 +17,28 @@ const getModules = ({ mode }) => {
   return {
     rules: [
       {
-        test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, cssLoaderWithModules],
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, cssLoaderWithModules, 'sass-loader'],
+        oneOf: [
+          {
+            test: /\.module\.css$/i,
+            use: [MiniCssExtractPlugin.loader, cssLoaderWithModules],
+          },
+          {
+            test: /\.module\.s[ac]ss$/i,
+            use: [
+              MiniCssExtractPlugin.loader,
+              cssLoaderWithModules,
+              'sass-loader',
+            ],
+          },
+          {
+            test: /\.css$/i,
+            use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          },
+          {
+            test: /\.s[ac]ss$/i,
+            use: [MiniCssExtractPlugin.loader, 'sass-loader'],
+          },
+        ],
       },
     ],
   };
