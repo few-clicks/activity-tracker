@@ -19,7 +19,7 @@ const getWebpackConfiguration = (options) => {
     resolve: getResolvers(options),
     module: getModules(options),
     devServer: getDevServer(options),
-    devtool: isDevelopment && 'inline-source-map',
+    devtool: isDevelopment ? 'eval' : 'source-map',
   };
 };
 
