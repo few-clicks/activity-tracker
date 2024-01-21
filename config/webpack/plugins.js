@@ -10,11 +10,18 @@ const getPlugins = ({ mode, analyze, paths }) => {
   const isDevelopment = mode === 'development';
   const isProduction = mode === 'production';
 
+  let faviconForHtmlPlugin = '';
+  if (paths.logo) {
+    if (isDevelopment) faviconForHtmlPlugin = paths.logo;
+  } else {
+    faviconForHtmlPlugin = path.resolve(paths.public, 'icons', 'favicon.ico');
+  }
+
   const plugins = [
     new HtmlWebPackPlugin({
       template: path.resolve(paths.public, 'index.html'),
       filename: 'index.html',
-      favicon: paths.logo || path.resolve(paths.public, 'icons', 'favicon.ico'),
+      favicon: faviconForHtmlPlugin,
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
