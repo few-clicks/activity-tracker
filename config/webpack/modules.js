@@ -3,6 +3,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getModules = ({ mode }) => {
   const isProduction = mode === 'production';
 
+  const babelLoader = {
+    test: /\.(?:js|mjs|cjs)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: [['@babel/preset-env', { targets: 'defaults' }]],
+      },
+    },
+  };
+
   const cssLoaderWithModules = {
     loader: 'css-loader',
     options: {
@@ -16,6 +27,7 @@ const getModules = ({ mode }) => {
 
   return {
     rules: [
+      babelLoader,
       {
         oneOf: [
           {
