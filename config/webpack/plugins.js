@@ -3,7 +3,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 const getPlugins = ({ mode, paths }) => {
-  const isProduction = mode === 'production';
   const isDevelopment = mode === 'development';
 
   const plugins = [
@@ -11,16 +10,13 @@ const getPlugins = ({ mode, paths }) => {
       template: paths.template,
       filename: 'index.html',
     }),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash].css',
+      chunkFilename: 'css/[name].[contenthash].css',
+    }),
   ];
 
   isDevelopment && plugins.push(new webpack.ProgressPlugin());
-  isProduction &&
-    plugins.push(
-      new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash].css',
-        chunkFilename: 'css/[name].[contenthash].css',
-      })
-    );
 
   return plugins;
 };
