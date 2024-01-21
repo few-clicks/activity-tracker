@@ -6,7 +6,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
-const getPlugins = ({ mode, paths }) => {
+const getPlugins = ({ mode, analyze, paths }) => {
   const isDevelopment = mode === 'development';
   const isProduction = mode === 'production';
 
@@ -25,7 +25,7 @@ const getPlugins = ({ mode, paths }) => {
   isDevelopment && plugins.push(new webpack.ProgressPlugin());
 
   if (isProduction) {
-    plugins.push(new BundleAnalyzerPlugin());
+    analyze && plugins.push(new BundleAnalyzerPlugin());
     paths.logo && plugins.push(new FaviconsWebpackPlugin(paths.logo));
   }
 

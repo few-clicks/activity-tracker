@@ -6,9 +6,10 @@ const logoPath = process.env.LOGO_PATH
   ? path.resolve(__dirname, process.env.LOGO_PATH)
   : '';
 
-module.exports = (_, argv) => {
+module.exports = (env, argv) => {
   const options = {
     mode: argv.mode,
+    analyze: env.analyze,
     paths: {
       entry: path.resolve(__dirname, process.env.ENTRY_PATH),
       output: path.resolve(__dirname, process.env.OUTPUT_PATH),
