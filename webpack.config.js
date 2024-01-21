@@ -9,6 +9,7 @@ module.exports = (_, argv) => {
       entry: path.resolve(__dirname, process.env.ENTRY_PATH),
       output: path.resolve(__dirname, process.env.OUTPUT_PATH),
       template: path.resolve(__dirname, process.env.TEMPLATE_PATH),
+      src: path.resolve(__dirname, process.env.SRC_PATH),
     },
     port: process.env.DEV_PORT,
   };

@@ -1,6 +1,7 @@
 const getPlugins = require('./plugins');
 const getModules = require('./modules');
 const getDevServer = require('./devServer');
+const getResolvers = require('./resolvers');
 
 const getWebpackConfiguration = (options) => {
   const isDevelopment = options.mode === 'development';
@@ -15,6 +16,7 @@ const getWebpackConfiguration = (options) => {
       clean: true,
     },
     plugins: getPlugins(options),
+    resolve: getResolvers(options),
     module: getModules(options),
     devServer: getDevServer(options),
     devtool: isDevelopment && 'inline-source-map',
