@@ -53,6 +53,7 @@ const getModules = ({ mode }) => {
             test: /\.s[ac]ss$/i,
             use: [
               isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+              'css-loader',
               'sass-loader',
             ],
           },
