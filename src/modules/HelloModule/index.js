@@ -1,4 +1,4 @@
-import Header from '@/shared/header';
+import Header from '@/shared/Header';
 import styles from './style.module.css';
 
 export default () => {

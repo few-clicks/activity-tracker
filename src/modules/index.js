@@ -1,4 +1,4 @@
-import CounterModule from './counter';
-import HelloModule from './hello';
+import CounterModule from './CounterModule';
+import HelloModule from './HelloModule';
 
 export default [HelloModule, CounterModule];

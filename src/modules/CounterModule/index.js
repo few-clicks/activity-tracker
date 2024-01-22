@@ -1,6 +1,6 @@
-import Header from '@/shared/header';
+import Header from '@/shared/Header';
+import Button from '@/shared/Button';
 import styles from './style.module.css';
-import Button from '@/shared/button';
 
 export default () => {
   const element = document.createElement('div');
