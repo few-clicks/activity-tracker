@@ -1,3 +1,8 @@
 import './normalize.css';
+import moduleCreators from '@/modules';
 
-console.log('Hello, world');
+const rootElement = document.getElementById('root');
+
+moduleCreators.forEach((createModule) => {
+  rootElement.appendChild(createModule());
+});
