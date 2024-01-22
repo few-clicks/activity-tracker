@@ -1,9 +1,8 @@
-import './style.css';
-import styles from './style.module.scss';
+import './normalize.css';
+import moduleCreators from '@/modules';
 
-import '@/scripts/script';
+const rootElement = document.getElementById('root');
 
-console.log('Hello, world', styles.test);
-
-const el = document.getElementById('test');
-el.classList.add('from_style');
+moduleCreators.forEach((createModule) => {
+  rootElement.appendChild(createModule());
+});
