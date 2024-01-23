@@ -6,7 +6,13 @@ export default () => {
   const element = document.createElement('div');
   element.classList.add(styles.hello);
 
-  element.appendChild(Header('Hello, world!'));
+  const headerElement = Header();
+  element.appendChild(headerElement);
+  const updateName = () => {
+    headerElement.innerText = `Hello, ${store.getState().input.text}!`;
+  };
+  store.subscribe(updateName);
+  updateName();
 
   const clicker = document.createElement('div');
   clicker.style.fontSize = '26px';
@@ -14,7 +20,7 @@ export default () => {
   element.appendChild(clicker);
 
   const updateValue = () => {
-    clicker.innerText = `Clicks: ${store.state.counter.value}`;
+    clicker.innerText = `Clicks: ${store.getState().counter.value}`;
   };
   store.subscribe(updateValue);
   updateValue();
