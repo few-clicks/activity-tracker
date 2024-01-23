@@ -1,7 +1,12 @@
 export class Store {
   constructor(reducers) {
     this.reducers = reducers;
-    this.state = this._reduce();
+    const stateFromLocalStorage = JSON.parse(localStorage.getItem('state'));
+    if (stateFromLocalStorage) {
+      this.state = stateFromLocalStorage;
+    } else {
+      this.state = this._reduce();
+    }
     this.listeners = [];
   }
 
@@ -18,6 +23,7 @@ export class Store {
 
   dispatch(action) {
     this.state = this._reduce(this.state, action);
+    localStorage.setItem('state', JSON.stringify(this.state));
     this.listeners.forEach((listener) => listener());
   }
 
