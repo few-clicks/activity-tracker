@@ -5,9 +5,9 @@ export class Store {
     this.listeners = [];
   }
 
-  _reduce() {
+  _reduce(state, action) {
     return Object.keys(this.reducers).reduce((acc, key) => {
-      acc[key] = this.reducers[key]();
+      acc[key] = this.reducers[key](state && state[key], action);
       return acc;
     }, {});
   }
@@ -23,5 +23,8 @@ export class Store {
 
   subscribe(listener) {
     this.listeners.push(listener);
+    return () => {
+      this.listeners = this.listeners.filter((l) => l !== listener);
+    };
   }
 }

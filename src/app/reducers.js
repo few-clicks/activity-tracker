@@ -3,9 +3,9 @@ import { DECREMENT, INCREMENT, SET_TEXT } from './actions';
 export const counterReducer = (state = { value: 0 }, action = {}) => {
   switch (action.type) {
     case INCREMENT:
-      return { ...state, count: state.count + 1 };
+      return { ...state, value: state.value + 1 };
     case DECREMENT:
-      return { ...state, count: state.count - 1 };
+      return { ...state, value: state.value - 1 };
     default:
       return state;
   }
