@@ -11,7 +11,7 @@ export const counterReducer = (state = { value: 0 }, action = {}) => {
   }
 };
 
-export const inputReducer = (state = { text: '' }, action = {}) => {
+export const inputReducer = (state = { text: 'world' }, action = {}) => {
   switch (action.type) {
     case SET_TEXT:
       return { ...state, text: action.payload.text };
