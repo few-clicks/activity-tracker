@@ -1,12 +1,14 @@
 export class Store {
-  constructor(reducers) {
+  constructor(reducers, isStorageConnected = true) {
     this.reducers = reducers;
+
     const stateFromLocalStorage = JSON.parse(localStorage.getItem('state'));
-    if (stateFromLocalStorage) {
+    if (isStorageConnected && stateFromLocalStorage) {
       this.state = stateFromLocalStorage;
     } else {
       this.state = this._reduce();
     }
+
     this.listeners = [];
   }
 
