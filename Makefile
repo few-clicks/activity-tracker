@@ -1,2 +1,2 @@
-init:
+env:
 	cp example.env .env
