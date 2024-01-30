@@ -1,5 +1,6 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -18,6 +19,11 @@ const getPlugins = ({ mode, analyze, paths }) => {
   }
 
   const plugins = [
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(paths.src, 'manifest.json'), to: 'manifest.json' },
+      ],
+    }),
     new HtmlWebPackPlugin({
       template: path.resolve(paths.public, 'index.html'),
       filename: 'index.html',
