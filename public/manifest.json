@@ -1,0 +1,15 @@
+{
+    "name": "Vanila SPA template",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": ".",
+    "icons": [
+        {
+        "src": "assets/android-chrome-144x144.png",
+        "sizes": "144x144",
+        "type": "image/png",
+        "purpose": "any"
+        }
+    ]
+}
