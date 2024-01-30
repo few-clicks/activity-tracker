@@ -22,6 +22,10 @@ const getPlugins = ({ mode, analyze, paths }) => {
     new CopyPlugin({
       patterns: [
         { from: path.resolve(paths.src, 'manifest.json'), to: 'manifest.json' },
+        {
+          from: path.resolve(paths.root, 'service', 'serviceWorker.js'),
+          to: 'serviceWorker.js',
+        },
       ],
     }),
     new HtmlWebPackPlugin({
