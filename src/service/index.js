@@ -1,4 +1,4 @@
-const PUBLIC_SW_PATH = './serviceWorkers.js';
+const PUBLIC_SW_PATH = './sw.js';
 
 export const makeServiceWorkers = async () => {
   if (navigator.serviceWorker) {

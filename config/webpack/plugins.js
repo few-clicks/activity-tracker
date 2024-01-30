@@ -21,10 +21,13 @@ const getPlugins = ({ mode, analyze, paths }) => {
   const plugins = [
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(paths.src, 'manifest.json'), to: 'manifest.json' },
         {
-          from: path.resolve(paths.root, 'service', 'serviceWorkers.js'),
-          to: 'serviceWorkers.js',
+          from: path.resolve(paths.public, 'manifest.json'),
+          to: 'manifest.json',
+        },
+        {
+          from: path.resolve(paths.public, 'serviceWorkers.js'),
+          to: 'sw.js',
         },
       ],
     }),
