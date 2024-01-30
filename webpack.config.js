@@ -11,6 +11,7 @@ module.exports = (env, argv) => {
     mode: argv.mode,
     analyze: env.analyze,
     paths: {
+      root: path.resolve(__dirname),
       entry: path.resolve(__dirname, process.env.ENTRY_PATH),
       output: path.resolve(__dirname, process.env.OUTPUT_PATH),
       public: path.resolve(__dirname, process.env.PUBLIC_PATH),
