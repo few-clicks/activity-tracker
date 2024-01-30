@@ -23,7 +23,7 @@ const getPlugins = ({ mode, analyze, paths }) => {
       patterns: [
         { from: path.resolve(paths.src, 'manifest.json'), to: 'manifest.json' },
         {
-          from: path.resolve(paths.root, 'service', 'serviceWorker.js'),
+          from: path.resolve(paths.root, 'service', 'serviceWorkers.js'),
           to: 'serviceWorker.js',
         },
       ],

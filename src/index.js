@@ -1,7 +1,7 @@
 import './normalize.css';
 import moduleCreators from '@/modules';
 
-const PUBLIC_SW_PATH = './serviceWorker.js';
+const PUBLIC_SW_PATH = './serviceWorkers.js';
 
 window.addEventListener('load', async () => {
   if (navigator.serviceWorker) {
