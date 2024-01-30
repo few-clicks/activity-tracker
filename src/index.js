@@ -1,17 +1,9 @@
 import './normalize.css';
 import moduleCreators from '@/modules';
+import { makeServiceWorkers } from './service';
 
-const PUBLIC_SW_PATH = './serviceWorkers.js';
-
-window.addEventListener('load', async () => {
-  if (navigator.serviceWorker) {
-    try {
-      const response = await navigator.serviceWorker.register(PUBLIC_SW_PATH);
-      console.log('SW register success', response);
-    } catch (error) {
-      console.error('SW register failed:', error);
-    }
-  }
+window.addEventListener('load', () => {
+  makeServiceWorkers();
 });
 
 const rootElement = document.getElementById('root');
