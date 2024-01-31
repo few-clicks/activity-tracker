@@ -9,6 +9,8 @@ const getManifest = (pathToIcons) => {
     theme_color: '#ffffff',
     start_url: '.',
     display: 'standalone',
+    fingerprints: false,
+    publicPath: '/',
     icons: [
       {
         src: path.join(pathToIcons, 'logo-android-512x512.png'),
