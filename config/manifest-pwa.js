@@ -10,7 +10,7 @@ const getManifest = (pathToIcons) => {
     start_url: '.',
     display: 'standalone',
     fingerprints: false,
-    publicPath: '/',
+    publicPath: '.',
     icons: [
       {
         src: path.join(pathToIcons, 'logo-android-512x512.png'),
