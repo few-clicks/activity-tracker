@@ -26,7 +26,7 @@ const getPlugins = ({ mode, analyze, paths }) => {
       template: path.resolve(paths.public, 'index.html'),
       filename: 'index.html',
     }),
-    new WebpackPwaManifest(getManifest(path.resolve(paths.root, 'icon'))),
+    new WebpackPwaManifest(getManifest(path.resolve(paths.root, 'icons'))),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
       chunkFilename: 'css/[name].[contenthash].css',
@@ -36,7 +36,9 @@ const getPlugins = ({ mode, analyze, paths }) => {
   isDevelopment && plugins.push(new webpack.ProgressPlugin());
   isProduction &&
     plugins.push(
-      new FaviconsWebpackPlugin(path.resolve(paths.root, 'icon', 'favicon.svg'))
+      new FaviconsWebpackPlugin(
+        path.resolve(paths.root, 'icons', 'favicon.svg')
+      )
     );
 
   if (isProduction) {
