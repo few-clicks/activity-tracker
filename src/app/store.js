@@ -1,38 +1,38 @@
 export class Store {
   constructor(reducers, isStorageConnected = true) {
-    this.reducers = reducers;
+    this._reducers = reducers;
 
     const stateFromLocalStorage = JSON.parse(localStorage.getItem('state'));
     if (isStorageConnected && stateFromLocalStorage) {
-      this.state = stateFromLocalStorage;
+      this._state = stateFromLocalStorage;
     } else {
-      this.state = this._reduce();
+      this._state = this._reduce();
     }
 
-    this.listeners = [];
+    this._listeners = [];
   }
 
   _reduce(state, action) {
-    return Object.keys(this.reducers).reduce((acc, key) => {
-      acc[key] = this.reducers[key](state && state[key], action);
+    return Object.keys(this._reducers).reduce((acc, key) => {
+      acc[key] = this._reducers[key](state && state[key], action);
       return acc;
     }, {});
   }
 
   getState() {
-    return this.state;
+    return this._state;
   }
 
   dispatch(action) {
-    this.state = this._reduce(this.state, action);
-    localStorage.setItem('state', JSON.stringify(this.state));
-    this.listeners.forEach((listener) => listener());
+    this._state = this._reduce(this._state, action);
+    localStorage.setItem('state', JSON.stringify(this._state));
+    this._listeners.forEach((listener) => listener());
   }
 
   subscribe(listener) {
-    this.listeners.push(listener);
+    this._listeners.push(listener);
     return () => {
-      this.listeners = this.listeners.filter((l) => l !== listener);
+      this._listeners = this._listeners.filter((l) => l !== listener);
     };
   }
 }
