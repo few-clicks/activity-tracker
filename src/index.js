@@ -1,6 +1,6 @@
 import './normalize.css';
 import moduleCreators from '@/modules';
-import { makeServiceWorkers } from './service';
+import { makeServiceWorkers } from './app/service';
 import navigation from '@/modules/navigation';
 
 window.addEventListener('load', () => {

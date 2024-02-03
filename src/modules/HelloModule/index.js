@@ -1,6 +1,6 @@
-import Header from '@/shared/Header';
+import Header from '@/common/Header';
 import styles from './style.module.css';
-import { store } from '../../app';
+import { store } from '@/app/data';
 
 export default () => {
   const element = document.createElement('div');

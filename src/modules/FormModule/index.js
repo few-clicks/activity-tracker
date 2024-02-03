@@ -1,8 +1,8 @@
-import Header from '@/shared/Header';
+import Header from '@/common/Header';
 import styles from './style.module.css';
 import Input from './components/Input';
-import { store } from '../../app';
-import { SET_TEXT } from '../../app/actions';
+import { store } from '@/app/data';
+import { SET_TEXT } from '@/app/data/actions';
 
 export default () => {
   const element = document.createElement('div');
