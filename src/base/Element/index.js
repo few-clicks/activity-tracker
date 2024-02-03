@@ -1,4 +1,4 @@
-class Element {
+export default class {
   constructor(tagName, attributes = {}) {
     this._element = document.createElement(tagName);
     for (const [key, value] of Object.entries(attributes)) {
@@ -10,5 +10,3 @@ class Element {
     return this._element;
   }
 }
-
-export default Element;

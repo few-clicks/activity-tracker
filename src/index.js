@@ -1,7 +1,12 @@
-import './normalize.css';
-import moduleCreators from '@/modules';
+import './styles/normalize.css';
 import { makeServiceWorkers } from './app/service';
-import navigation from '@/modules/navigation';
+
+import {
+  getNavigationModule,
+  getHelloModule,
+  getFormModule,
+  getCounterModule,
+} from './modules';
 
 window.addEventListener('load', () => {
   makeServiceWorkers();
@@ -9,8 +14,7 @@ window.addEventListener('load', () => {
 
 const rootElement = document.getElementById('root');
 
-rootElement.appendChild(navigation.element);
-
-moduleCreators.forEach((createModule) => {
-  rootElement.appendChild(createModule());
-});
+rootElement.appendChild(getNavigationModule());
+rootElement.appendChild(getHelloModule());
+rootElement.appendChild(getFormModule());
+rootElement.appendChild(getCounterModule());
