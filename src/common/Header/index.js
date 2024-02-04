@@ -1,7 +1,7 @@
-import { Element } from '@/base';
+import { Component } from '@/base';
 import './style.scss';
 
-export default class extends Element {
+export default class extends Component {
   constructor(text) {
     super('div');
     this._element.innerText = text;

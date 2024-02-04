@@ -1,7 +1,7 @@
 import './style.css';
-import { Element } from '@/base';
+import { Component } from '@/base';
 
-export default class extends Element {
+export default class extends Component {
   constructor(text, color, onClick) {
     super('button');
     this._element.innerText = text;
