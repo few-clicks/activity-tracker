@@ -8,23 +8,19 @@ export default () => {
   element.classList.add(styles.hello);
 
   const header = new Header();
-  const updateName = () => {
-    header.updateText(`Hello, ${store.getState().input.text}!`);
-  };
-  store.subscribe(updateName);
-  updateName();
+  header.subscribe(store, () => {
+    header.innerText = `Hello, ${store.getState().input.text}!`;
+  });
+
+  const clicker = new Element('div');
+  clicker.element.style.fontSize = '26px';
+  clicker.element.style.marginLeft = '20px';
+  clicker.subscribe(store, () => {
+    clicker.element.innerText = `Clicks: ${store.getState().counter.value}`;
+  });
+
   element.appendChild(header.element);
-
-  const clicker = new Element('div').element;
-  clicker.style.fontSize = '26px';
-  clicker.style.marginLeft = '20px';
-  element.appendChild(clicker);
-
-  const updateValue = () => {
-    clicker.innerText = `Clicks: ${store.getState().counter.value}`;
-  };
-  store.subscribe(updateValue);
-  updateValue();
+  element.appendChild(clicker.element);
 
   return element;
 };

@@ -9,4 +9,9 @@ export default class {
   get element() {
     return this._element;
   }
+
+  subscribe(store, callback) {
+    store.subscribe(callback);
+    callback();
+  }
 }
