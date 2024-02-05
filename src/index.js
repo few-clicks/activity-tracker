@@ -1,4 +1,4 @@
-import './styles/normalize.css';
+import './app/styles/normalize.css';
 import { makeServiceWorkers } from './app/service';
 
 import {
