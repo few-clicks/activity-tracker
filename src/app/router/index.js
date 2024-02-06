@@ -35,7 +35,7 @@ class Router {
     if (this._routes[route]) {
       this._routes[route]();
     } else {
-      console.log('route not found');
+      this._routes[404]();
     }
   }
 }
