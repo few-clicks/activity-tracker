@@ -6,24 +6,30 @@ class Router {
     window.addEventListener('hashchange', (event) => {
       this._resolve();
     });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      this._resolve();
+    });
   }
 
   initRoutes(routes) {
     this._routes = routes;
   }
 
+  initPageContainer(element) {
+    this._pageContainer = element;
+    this._pageContainer.id = 'page-container';
+  }
+
   _resolve() {
     if (location.hash === '') {
-      this._routes['/']();
+      this._pageContainer.innerHTML = '';
+      this._pageContainer.appendChild(this._routes['/']);
+
       return;
     }
 
-    const route = location.hash.replace('#', '/');
-    if (this._routes[route]) {
-      this._routes[route]();
-    } else {
-      this._routes[404]();
-    }
+    this._pageContainer.innerHTML = '404 | Not Found';
   }
 }
 
