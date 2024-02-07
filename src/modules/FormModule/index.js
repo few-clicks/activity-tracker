@@ -1,16 +1,16 @@
-import Header from '@/shared/Header';
+import { Header } from '@/common';
 import styles from './style.module.css';
-import Input from './components/Input';
-import { store } from '../../app';
-import { SET_TEXT } from '../../app/actions';
+import getInput from './components/Input';
+import { store } from '@/app/data';
+import { SET_TEXT } from '@/app/data/actions';
 
 export default () => {
   const element = document.createElement('div');
   element.classList.add(styles.form);
 
-  element.appendChild(Header('Input name'));
+  element.appendChild(new Header('Input name').element);
 
-  const inputElement = Input();
+  const inputElement = getInput();
   inputElement.value = store.getState().input.text;
   inputElement.oninput = (event) => {
     inputElement.value = event.target.value;

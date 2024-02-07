@@ -1,29 +1,26 @@
-import Header from '@/shared/Header';
+import { Component } from '@/base';
+import { Header } from '@/common';
+import { store } from '@/app/data';
 import styles from './style.module.css';
-import { store } from '../../app';
 
 export default () => {
-  const element = document.createElement('div');
+  const element = new Component('div').element;
   element.classList.add(styles.hello);
 
-  const headerElement = Header();
-  element.appendChild(headerElement);
-  const updateName = () => {
-    headerElement.innerText = `Hello, ${store.getState().input.text}!`;
-  };
-  store.subscribe(updateName);
-  updateName();
+  const header = new Header();
+  header.subscribe(store, () => {
+    header.element.innerText = `Hello, ${store.getState().input.text}!`;
+  });
 
-  const clicker = document.createElement('div');
-  clicker.style.fontSize = '26px';
-  clicker.style.marginLeft = '20px';
-  element.appendChild(clicker);
+  const clicker = new Component('div');
+  clicker.element.style.fontSize = '26px';
+  clicker.element.style.marginLeft = '20px';
+  clicker.subscribe(store, () => {
+    clicker.element.innerText = `Clicks: ${store.getState().counter.value}`;
+  });
 
-  const updateValue = () => {
-    clicker.innerText = `Clicks: ${store.getState().counter.value}`;
-  };
-  store.subscribe(updateValue);
-  updateValue();
+  element.appendChild(header.element);
+  element.appendChild(clicker.element);
 
   return element;
 };

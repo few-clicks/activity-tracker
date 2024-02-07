@@ -1,5 +1,4 @@
-import CounterModule from './CounterModule';
-import FormModule from './FormModule';
-import HelloModule from './HelloModule';
-
-export default [HelloModule, FormModule, CounterModule];
+export { default as getNavigationModule } from './navigationModule';
+export { default as getHelloModule } from './helloModule';
+export { default as getFormModule } from './formModule';
+export { default as getCounterModule } from './counterModule';
