@@ -29,7 +29,13 @@ class Router {
       return;
     }
 
-    this._pageContainer.innerHTML = '404 | Not Found';
+    const route = location.hash.replace('#', '/');
+    if (this._routes[route]) {
+      this._pageContainer.innerHTML = '';
+      this._pageContainer.appendChild(this._routes[route]);
+    } else {
+      this._pageContainer.innerHTML = '404 | Not Found';
+    }
   }
 }
 
