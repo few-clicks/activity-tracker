@@ -12,22 +12,9 @@ class Router {
     this._routes = routes;
   }
 
-  route(route) {
-    if (this._routes[route]) {
-      return route;
-    }
-    console.error('This row is now exist:', route);
-    return '/';
-  }
-
-  navigate = (url) => {
-    history.pushState(null, null, url);
-  };
-
   _resolve() {
     if (location.hash === '') {
       this._routes['/']();
-
       return;
     }
 
