@@ -21,18 +21,23 @@ class Router {
     this._pageContainer.id = 'page-container';
   }
 
+  _updatePage(element) {
+    this._pageContainer.innerHTML = '';
+    this._pageContainer.appendChild(element);
+  }
+
   _resolve() {
     if (location.hash === '') {
-      this._pageContainer.innerHTML = '';
-      this._pageContainer.appendChild(this._routes['/']);
-
+      const homePage = this._routes['/'];
+      if (homePage) {
+        this._updatePage(homePage);
+      }
       return;
     }
 
-    const route = location.hash.replace('#', '/');
-    if (this._routes[route]) {
-      this._pageContainer.innerHTML = '';
-      this._pageContainer.appendChild(this._routes[route]);
+    const newPage = this._routes[location.hash.replace('#', '/')];
+    if (newPage) {
+      this._updatePage(newPage);
     } else {
       this._pageContainer.innerHTML = '404 | Not Found';
     }
