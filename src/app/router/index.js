@@ -21,6 +21,21 @@ class Router {
     this._pageContainer.id = 'page-container';
   }
 
+  _activeClassResolver(eventType, callback) {
+    window.addEventListener(eventType, () => {
+      if (location.hash === '') {
+        callback('#');
+      } else {
+        callback(location.hash);
+      }
+    });
+  }
+
+  updateActiveClass(callback) {
+    this._activeClassResolver('hashchange', callback);
+    this._activeClassResolver('DOMContentLoaded', callback);
+  }
+
   navigate(url) {
     location.hash = url;
   }
