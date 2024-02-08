@@ -21,6 +21,20 @@ class Router {
     this._pageContainer.id = 'page-container';
   }
 
+  navigate(url) {
+    location.hash = url;
+  }
+
+  isActive(url) {
+    if (!location.hash && url === '#') {
+      return true;
+    }
+    if (location.hash === url) {
+      return true;
+    }
+    return false;
+  }
+
   _updatePage(element) {
     this._pageContainer.innerHTML = '';
     this._pageContainer.appendChild(element);
