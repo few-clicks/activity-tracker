@@ -1,3 +1,7 @@
+/**
+ * export the service worker maker
+ */
+
 const PUBLIC_SW_PATH = './sw.js';
 
 export const makeServiceWorkers = async () => {

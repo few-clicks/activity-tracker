@@ -1,4 +1,4 @@
-const cacheKey = 'static-app-v1';
+const cacheKey = 'spa-template-app-v1';
 const dynamicCacheName = 'dynamic-data';
 
 self.addEventListener('install', async (event) => {

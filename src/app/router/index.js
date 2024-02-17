@@ -1,3 +1,7 @@
+/**
+ * export the router object of the app
+ */
+
 class Router {
   constructor(pageId = 'page', isHashRouter = true) {
     !isHashRouter && console.log('url routing is not available now');
