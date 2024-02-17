@@ -1,3 +1,13 @@
+/**
+ * Root index
+ *
+ * - imports
+ * - reset styles
+ * - connect service worker
+ * - connect the root element
+ * - add routing and pages
+ */
+
 import './app/styles/normalize.css';
 import { makeServiceWorkers } from './app/service';
 import { getNavigationModule } from './modules';
