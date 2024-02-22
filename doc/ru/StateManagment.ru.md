@@ -1,4 +1,4 @@
-# [State Management](https://varulv.ru/coturn.html) ❤️ 
+# [State Management](https://varulv.ru/coturn.html)
 
 ## Содержание
 - [State Manager](#vanilla-js-client-microservices-reactive-app-template)
