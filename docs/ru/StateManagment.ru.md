@@ -1,7 +1,7 @@
-# [State Management](https://varulv.ru/coturn.html)
+# **State Management** 
 
 ## Содержание
-- [State Manager](#vanilla-js-client-microservices-reactive-app-template)
+- [State Manager](#state-management)
 - [Store (Хранилище)](#storejs)
   - [constructor](#constructorreducers-isstorageconnected--true)
   - [getState](#getstate)
