@@ -1,4 +1,4 @@
-const LOCAL_STORAGE_KEY = 'spa-template-state';
+const LOCAL_STORAGE_KEY = 'activity-tracker';
 
 export class Store {
   constructor(reducers, isStorageConnected = true) {

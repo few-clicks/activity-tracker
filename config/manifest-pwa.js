@@ -2,13 +2,13 @@ const path = require('path');
 
 const getManifest = (pathToIcons) => {
   return {
-    name: 'Vanilla SPA template',
-    short_name: 'VanillaSPA',
-    description: 'Reactive vanilla SPA demo with state manager',
+    name: 'Activity tracker',
+    short_name: 'Activity',
+    description: 'Activity tracker for few clicks team',
     background_color: '#ffffff',
     theme_color: '#ffffff',
-    start_url: '/vanilla-spa-example/',
-    scope: '/vanilla-spa-example/',
+    start_url: '/activity/',
+    scope: '/activity/',
     display: 'standalone',
     fingerprints: false,
     publicPath: '.',

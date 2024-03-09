@@ -1,4 +1,4 @@
-const STATIC_CACHE_KEY = 'spa-template-app-v1';
+const STATIC_CACHE_KEY = 'activity-tracker-v1';
 const DYNAMIC_CACHE_NAME = '';
 
 self.addEventListener('install', async () => {
