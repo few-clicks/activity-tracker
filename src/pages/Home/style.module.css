@@ -1,0 +1,21 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Одна колонка по умолчанию для мобильных */
+}
+  
+@media (min-width: 640px) { /* sm: Для планшетов */
+    .grid {
+      grid-template-columns: repeat(2, 1fr); /* Две колонки для экранов от 640px */
+    }
+}
+  
+@media (min-width: 768px) { /* md: Для небольших устройств */
+    /* При желании, здесь можно оставить пустым или добавить специфические стили */
+}
+  
+@media (min-width: 1024px) { /* lg: Для десктопов */
+    .grid {
+      grid-template-columns: repeat(3, 1fr); /* Три колонки для экранов от 1024px */
+    }
+}
+  
