@@ -9,6 +9,7 @@
  */
 
 import './app/styles/normalize.css';
+import style from './style.module.css';
 import { makeServiceWorkers } from './app/service';
 import { getHomePage } from './pages';
 import router from './app/router';
@@ -18,6 +19,8 @@ window.addEventListener('load', () => {
 });
 
 const rootElement = document.getElementById('root');
+rootElement.classList.add(style.container);
+
 const pageContainer = document.createElement('div');
 
 router.initPageContainer(pageContainer);
